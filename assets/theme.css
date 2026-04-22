@@ -1,0 +1,138 @@
+/* UCSD-inspired theme overlay for Reveal.js "white" */
+
+:root {
+  --ucsd-navy: #182B49;
+  --ucsd-gold: #C69214;
+  --ucsd-blue: #006A96;
+  --ink: #1a1a2e;
+  --ink-muted: #4b5563;
+  --rule: #e5e7eb;
+  --page-bg: #fafafa;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.reveal {
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  color: var(--ink);
+  font-size: 30px;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--ucsd-navy);
+  line-height: 1.2;
+}
+.reveal h1 { font-size: 2.4em; }
+.reveal h2 { font-size: 1.7em; }
+.reveal h3 { font-size: 1.2em; color: var(--ucsd-blue); }
+.reveal h4 { font-size: 1.0em; color: var(--ucsd-blue); }
+.reveal p, .reveal li { line-height: 1.5; }
+.reveal small { font-size: 0.6em; color: var(--ink-muted); display: inline-block; }
+.reveal strong { color: var(--ucsd-navy); }
+.reveal blockquote {
+  border-left: 3px solid var(--ucsd-gold);
+  background: #fdf6e3;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  font-style: italic;
+  font-size: 0.85em;
+}
+.reveal a { color: var(--ucsd-blue); text-decoration: none; border-bottom: 1px solid currentColor; }
+.reveal a:hover { color: var(--ucsd-gold); }
+
+/* title slide */
+.reveal section[data-state="title-slide"] h1 {
+  font-size: 2.8em;
+  margin-bottom: 0.3em;
+}
+.reveal section[data-state="title-slide"] h3 {
+  color: var(--ucsd-gold);
+  font-weight: 500;
+  margin-bottom: 1.2em;
+}
+
+/* dark act-break slides */
+.reveal section[data-background="#1a1a2e"] h2 {
+  color: #fff;
+  font-size: 3.2em;
+}
+.reveal section[data-background="#1a1a2e"] small {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.7em;
+}
+
+/* two-column and three-column helpers used in slides.md */
+.two-col, .three-col {
+  display: grid;
+  gap: 32px;
+  text-align: left;
+  margin: 0.5em 0 1em;
+}
+.two-col { grid-template-columns: 1fr 1fr; }
+.three-col { grid-template-columns: 1fr 1fr 1fr; }
+.two-col > div, .three-col > div {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px 22px;
+  font-size: 0.8em;
+}
+.two-col h3, .three-col h3, .two-col h4, .three-col h4 {
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+.three-col > div { font-size: 0.7em; }
+
+/* mermaid */
+.reveal .mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.4em auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  max-width: 100%;
+}
+.reveal .mermaid svg { max-width: 100%; height: auto; }
+
+/* discussion prompts */
+.discussion-prompts {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 0.8em;
+}
+.discussion-prompts ul { list-style: none; padding-left: 0; }
+.discussion-prompts li {
+  padding: 10px 16px;
+  margin: 10px 0;
+  border-left: 3px solid var(--ucsd-gold);
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+.discussion-prompts strong { color: var(--ucsd-gold); }
+
+/* progress bar */
+.reveal .progress { color: var(--ucsd-blue); height: 4px; }
+
+/* slide number */
+.reveal .slide-number {
+  background: rgba(24,43,73,0.85);
+  color: #fff;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* print PDF */
+@media print {
+  .reveal .slides section {
+    page-break-after: always;
+  }
+}

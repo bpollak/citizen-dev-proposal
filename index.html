@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Agentic Development at UC San Diego — ITS Proposal</title>
+  <meta name="description" content="Internal ITS framework for citizen agentic development at UC San Diego.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown="slides/slides.md"
+               data-separator="^\n---\n$"
+               data-separator-vertical="^\n--\n$"
+               data-separator-notes="^Note:">
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: {
+        fontFamily: '"Inter", "Helvetica Neue", system-ui, sans-serif',
+        fontSize: '15px',
+        primaryColor: '#fef9c3',
+        primaryTextColor: '#1a1a2e',
+        primaryBorderColor: '#a16207',
+        lineColor: '#6b7280',
+        secondaryColor: '#dbeafe',
+        tertiaryColor: '#dcfce7',
+      },
+      flowchart: { curve: 'basis', padding: 10, htmlLabels: true },
+    });
+
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'slide',
+      width: 1280,
+      height: 800,
+      margin: 0.08,
+      minScale: 0.2,
+      maxScale: 2.0,
+      plugins: [ RevealMarkdown, RevealNotes, RevealHighlight ],
+      markdown: { smartypants: true },
+    }).then(() => {
+      // Render all mermaid diagrams after slides are parsed
+      mermaid.run({
+        querySelector: '.reveal .mermaid',
+      });
+      // Re-run on slide change in case of lazy rendering
+      Reveal.on('slidechanged', () => {
+        document.querySelectorAll('.reveal .slides section.present .mermaid:not([data-processed])').forEach(el => {
+          mermaid.run({ nodes: [el] }).catch(() => {});
+        });
+      });
+    });
+  </script>
+</body>
+</html>
